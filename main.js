@@ -90,7 +90,7 @@ function calculate() {
     });
      console.log(DTb + " " + DC + " " + sumUp + " " + sumDown);
     IRA = (1 - (0.6 * DTb + 0.4 * DTp)/DC) * (sumUp / sumDown);
-    $('#IRA').text(IRA);
+    $('#IRA').text(IRA.toFixed(4));
     console.log(IRA);
 
 
