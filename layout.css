@@ -1,0 +1,65 @@
+html{
+    font-family: sans-serif;
+}
+.semester{
+    padding: 10px 15px;
+    background-color: #ccc;
+    max-width: 100px;
+    margin: 2px 10px;
+    float: left;
+}
+#add_semester{
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+    float: left;
+    margin: 10px;
+    font-size: 80px;
+    text-align: center;
+    display: table-cell;
+}
+.add_row:hover{
+    background-color: #fdd;
+}
+#add_semester:hover{
+    background-color: #fdd;
+}
+tbody td{
+    border: 1px solid;
+}
+.add_row{
+    text-align: center;
+}
+.credits, .grade {
+    height: auto;
+    min-height: 18px;
+    text-align: center;
+}
+#tranc{
+    float: left;
+}
+.trancadas{
+    height: 18px;
+    min-width: 40px;
+}
+#IRA{
+    height: 50px;
+    width: 100px;
+    background-color: #ddd;
+    margin-left: 50px;
+    text-align: center;
+    float: left;
+    box-shadow: 3px 3px 5px #000;
+}
+#IRA:hover{
+    box-shadow: 1px 1px 3px #000;
+}
+#IRA:active{
+    background-color: #fdd;
+    box-shadow: 1px 1px 3px #000;
+}
+
+#res{
+        position: relative;
+        bottom: 0;
+}
