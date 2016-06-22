@@ -8,23 +8,27 @@ var mencao = {
     "MS" : 4,
     "SS" : 5
 }
-
+var row = '<tr class="paper"><td><input class="credits" type="number" maxlength="2" min="1" value="2"></td><td><input class="grade" type="text" maxlength="2" value="MM"></td><td><div class="del_sem">X</div></td></tr>';
 $(document).ready( function () {
     start();
 });
-
+var x = setInterval(calculate, 100);
 function start() {
     //div contenteditable
     $(document).on('click', '.add_row', function () {
-        $(this).before('<tr><td><div contenteditable class="credits"> </div></td><td><div contenteditable class="grade"></div></td></tr>');
+        $(this).before(row);
     });
     $('#add_semester').click( function () {
         console.log("ue");
-        $(this).before('<table class="semester"><thead><tr><td colspan="2">' + ($('.semester').length+1) + 'º Semestre</td></tr><tr><td>Creditos</td><td>Menção</td></tr><tbody><tr><td><div contenteditable class="credits"></div></td><td><div contenteditable class="grade"></div></td></tr><tr class="add_row"><td colspan="2"><div>+</div></td></tr></tbody></table>');
+        $(this).before('<table class="semester"><thead><tr><td colspan="3">' + ($('.semester').length+1) + 'º Semestre</td></tr><tr><td>Creditos</td><td>Menção</td></tr><tbody>' + row + '<tr class="add_row"><td colspan="3"><div>+</div></td></tr></tbody></table>');
     });
-    $('#IRA').click( function () {
+    $('.table-remove').click(function () {
+        $(this).parents('tr').detach();
+    });
+    // var x = setInterval(calculate(), 1000);
+    /*$('#IRA').click( function () {
         calculate();
-    });
+    });*/
 }
 function calculate() {
     var DC = 0; //Numero de disciplinas matriculado(inclundo trancadas)
@@ -38,20 +42,22 @@ function calculate() {
 
     var aux = $(".credits");
     aux.each( function (index, value){
-        console.log($(value).html() + "~");
-        if (isNaN($(value).html())) {
+        var aux = "";
+        aux = $(value).val();
+        if (isNaN(aux) && aux) {
             $(value).css("background-color","red");
-            console.log("NOOO");
         } else {
             $(value).css("background-color","#ccc");
         }
     });
     aux = $(".grade");
     aux.each( function (index, value){
-        console.log($(value).html() + "~");
-        if (!getKey ($(value).html())) {
+        var aux = "";
+        aux = $(value).val();
+        console.log(aux + "^");
+        if ((getKey ($(value).val()) === false) && aux) {
+            console.log(aux +"|");
             $(value).css("background-color","red");
-            console.log("NOOO");
         } else {
             $(value).css("background-color","#ccc");
         }
@@ -65,41 +71,36 @@ function calculate() {
         var credits = $(value).find('.credits');
         var grades = $(value).find('.grade');
         $(credits).each( function(index) {
-            Pi = getKey($(grades[index]).text());
-            CRi = parseInt($(credits[index]).text());
+            Pi = getKey($(grades[index]).val());
+            CRi = parseInt($(credits[index]).val());
             if ( CRi && Pi ){
                 DC++;
                 if (Pi >= 0) {
                     console.log(CRi + " " + Pi + " " + Pei);
                     sumUp += Pi * CRi * Pei;
                     sumDown += CRi * Pei;
-                } else if (Pi == -2){
+                } else if (Pi === -2){
                     tran++;
                     DTp = tran; //só para testar
                     //TODO Fazer um slider entre obrigatorias trancadas e optativas
                 }
-
-                $(grades[index]).css("background-color","#ccc");
-                $(credits[index]).css("background-color","#ccc");
             } else {
-                $(grades[index]).css("background-color","red");
-                $(credits[index]).css("background-color","red");
                 console.log("Deu Ruim");
             }
         });
     });
      console.log(DTb + " " + DC + " " + sumUp + " " + sumDown);
     IRA = (1 - (0.6 * DTb + 0.4 * DTp)/DC) * (sumUp / sumDown);
-    $('#IRA').text(IRA.toFixed(4));
+    if(!isNaN(IRA)) {
+        $('#IRA').text(IRA.toFixed(4));
+    }
     console.log(IRA);
-
-
 }
 function getKey(value){
     var flag=false;
     var keyVal;
     for (key in mencao){
-         if (key == value.toUpperCase()){
+         if (key === value.toUpperCase()){
              flag=true;
              keyVal=mencao[key];
              break;
