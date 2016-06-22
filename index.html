@@ -7,34 +7,40 @@
     </head>
     <body>
         <div id="main">
-            <div id="info"><h1> IRA calculator</h1></div>
+            <div id="top"><h1> IRA calculator</h1></div>
             <div id="sem_cont">
-                <table class="semester">
-                    <thead>
-                        <tr><td colspan="3">1º Semestre</td></tr>
-                        <tr>
-                            <td>Creditos</td>
-                            <td>Menção</td>
-                        </tr>
-                    <tbody>
-                        <tr class="paper">
-                            <td><input class="credits" type="number" maxlength="2" min="1" value="2"></td>
-                            <td><input class="grade" type="text" maxlength="2" value="MM"></td>
-                            <td><div class="del_sem">X</div></td>
-                        </tr>
-                        <tr class="add_row">
-                            <td colspan="3">
-                                <div>+</div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="sem_wrap">
+                    <div class="del_s">X</div>
+                    <table class="semester">
+                        <thead>
+                            <tr><td class="nth_sem" colspan="3">1º Semestre</td></tr>
+                            <tr>
+                                <td>Creditos</td>
+                                <td>Menção</td>
+                            </tr>
+                        <tbody>
+                            <tr class="paper">
+                                <td><input class="credits" type="number" maxlength="2" min="1" value="2"></td>
+                                <td><input class="grade" type="text" maxlength="2" value="MM"></td>
+                                <td><div class="del_p">X</div></td>
+                            </tr>
+                            <tr class="add_row">
+                                <td colspan="3">
+                                    <div>+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div id="add_semester">+</div>
             </div>
         </div>
         <div id="res">
+            <div id="info">
+                INFORMAÇÕES
+            </div>
             <div id="IRA">CALCULE</div>
         </div>
-        <div id="love">Made with &#10084; by @lucasm0ta</div>
+        <div id="love">Made with <strong style="color:red"> &#10084;</strong> by <a target="blanc" href="https://github.com/lucasm0ta">@lucasm0ta</a></div>
     </body>
 </html>

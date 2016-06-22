@@ -8,7 +8,7 @@ var mencao = {
     "MS" : 4,
     "SS" : 5
 }
-var row = '<tr class="paper"><td><input class="credits" type="number" maxlength="2" min="1" value="2"></td><td><input class="grade" type="text" maxlength="2" value="MM"></td><td><div class="del_sem">X</div></td></tr>';
+var row = '<tr class="paper"><td><input class="credits" type="number" maxlength="2" min="1" value="2"></td><td><input class="grade" type="text" maxlength="2" value="MM"></td><td><div class="del_p">X</div></td></tr>';
 $(document).ready( function () {
     start();
 });
@@ -19,16 +19,16 @@ function start() {
         $(this).before(row);
     });
     $('#add_semester').click( function () {
-        console.log("ue");
-        $(this).before('<table class="semester"><thead><tr><td colspan="3">' + ($('.semester').length+1) + 'º Semestre</td></tr><tr><td>Creditos</td><td>Menção</td></tr><tbody>' + row + '<tr class="add_row"><td colspan="3"><div>+</div></td></tr></tbody></table>');
+        $(this).before('<div class="sem_wrap"><div class="del_s">X</div><table class="semester"><thead><tr><td class="nth_sem" colspan="3">' + ($('.semester').length+1) + 'º Semestre</td></tr><tr><td>Creditos</td><td>Menção</td></tr><tbody>' + row + '<tr class="add_row"><td colspan="3"><div>+</div></td></tr></tbody></table></div>');
     });
-    $('.table-remove').click(function () {
-        $(this).parents('tr').detach();
+    //delete paper
+    $(document).on('click', '.del_p', function () {
+        $(this).parent().parent().remove();
     });
-    // var x = setInterval(calculate(), 1000);
-    /*$('#IRA').click( function () {
-        calculate();
-    });*/
+    //delete semester
+    $(document).on('click', '.del_s', function () {
+        $(this).parent().remove();
+    });
 }
 function calculate() {
     var DC = 0; //Numero de disciplinas matriculado(inclundo trancadas)
@@ -95,6 +95,9 @@ function calculate() {
         $('#IRA').text(IRA.toFixed(4));
     }
     console.log(IRA);
+    $('.nth_sem').each( function( index, value ) {
+        $(value).html((index+1) +"º Semestre");
+    });
 }
 function getKey(value){
     var flag=false;
