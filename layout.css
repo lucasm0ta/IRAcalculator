@@ -12,8 +12,8 @@ html, body{
 .semester{
     padding: 10px 5px;
     background-color: #ccc;
-    max-width: 100px;
-    min-width: 90px;
+    max-width: 500px;
+    min-width: 200px;
     margin: 10px 5px;
 }
 thead {

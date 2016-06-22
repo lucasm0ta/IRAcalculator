@@ -73,7 +73,7 @@ function calculate() {
         $(credits).each( function(index) {
             Pi = getKey($(grades[index]).val());
             CRi = parseInt($(credits[index]).val());
-            if ( CRi && Pi ){
+            if ( CRi > 0 && Pi>=0 ){
                 DC++;
                 if (Pi >= 0) {
                     console.log(CRi + " " + Pi + " " + Pei);
@@ -85,12 +85,17 @@ function calculate() {
                     //TODO Fazer um slider entre obrigatorias trancadas e optativas
                 }
             } else {
-                console.log("Deu Ruim");
+                console.log("Deu Ruim "+ CRi +" "+ Pi );
             }
         });
     });
-     console.log(DTb + " " + DC + " " + sumUp + " " + sumDown);
-    IRA = (1 - (0.6 * DTb + 0.4 * DTp)/DC) * (sumUp / sumDown);
+    console.log(DTb + " " + DC + " " + sumUp + " " + sumDown);
+    if (sumDown > 0) {
+        IRA = (1 - (0.6 * DTb + 0.4 * DTp)/DC) * (sumUp / sumDown);
+    } else {
+        IRA = 0;
+    }
+    console.log(IRA + "@");
     if(!isNaN(IRA)) {
         $('#IRA').text(IRA.toFixed(4));
     }
