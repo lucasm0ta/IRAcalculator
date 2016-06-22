@@ -1,4 +1,5 @@
 var mencao = {
+    "CC" : -3,
     "TR" : -2,
     "TJ" : -1,
     "SR" : 0,
@@ -8,11 +9,14 @@ var mencao = {
     "MS" : 4,
     "SS" : 5
 }
+var tran = 0;
 var row = '<tr class="paper"><td><input class="credits" type="number" maxlength="2" min="1" value="2"></td><td><input class="grade" type="text" maxlength="2" value="MM"></td><td><div class="del_p">X</div></td></tr>';
+
 $(document).ready( function () {
     start();
 });
 var x = setInterval(calculate, 100);
+
 function start() {
     //div contenteditable
     $(document).on('click', '.add_row', function () {
@@ -29,12 +33,14 @@ function start() {
     $(document).on('click', '.del_s', function () {
         $(this).parent().remove();
     });
+
+
 }
 function calculate() {
     var DC = 0; //Numero de disciplinas matriculado(inclundo trancadas)
     var DTb = 0; //Obrigatorias Trancadas
     var DTp = 0; //Optativas Trancadas
-    var tran = 0;
+    tran = 0;
     var IRA = 0;
     var sumUp = 0;
     var sumDown = 0;
@@ -73,29 +79,37 @@ function calculate() {
         $(credits).each( function(index) {
             Pi = getKey($(grades[index]).val());
             CRi = parseInt($(credits[index]).val());
-            if ( CRi > 0 && Pi>=0 ){
+            if ( CRi > 0 && Pi >=-3){
                 DC++;
                 if (Pi >= 0) {
                     console.log(CRi + " " + Pi + " " + Pei);
                     sumUp += Pi * CRi * Pei;
                     sumDown += CRi * Pei;
-                } else if (Pi === -2){
+                } else if (Pi == -2){
                     tran++;
-                    DTp = tran; //só para testar
                     //TODO Fazer um slider entre obrigatorias trancadas e optativas
+                } else if(Pi === -3) {
+                    DC--;
                 }
             } else {
                 console.log("Deu Ruim "+ CRi +" "+ Pi );
             }
         });
     });
+    //change slider values
+    document.getElementById("slider").max = tran;
+    $('#t_tr').html(tran);
+    DTb = $('#slider').val();
+    $('#t_opt').html(DTb);
+    DTp = tran - DTb;
+    $('#t_ob').html(DTp);
+
     console.log(DTb + " " + DC + " " + sumUp + " " + sumDown);
     if (sumDown > 0) {
         IRA = (1 - (0.6 * DTb + 0.4 * DTp)/DC) * (sumUp / sumDown);
     } else {
         IRA = 0;
     }
-    console.log(IRA + "@");
     if(!isNaN(IRA)) {
         $('#IRA').text(IRA.toFixed(4));
     }
@@ -103,6 +117,8 @@ function calculate() {
     $('.nth_sem').each( function( index, value ) {
         $(value).html((index+1) +"º Semestre");
     });
+    console.log("Trancamentos: " + tran);
+
 }
 function getKey(value){
     var flag=false;

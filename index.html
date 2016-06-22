@@ -3,7 +3,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="layout.css">
         <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
-        <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript" src="js/IRA.js"></script>
     </head>
     <body>
         <div id="main">
@@ -38,6 +38,26 @@
         <div id="res">
             <div id="info">
                 INFORMAÇÕES
+            </div>
+            <div id="slider_cont">
+                <table id="trancamentos">
+                    <thead>
+                        <tr style="background-color:#ccc">
+                            <td colspan="2">Trancamentos: <b id="t_tr">0</b></td>
+                        </tr>
+                        <tr>
+                            <td>Optativas</td>
+                            <td>Obrigatorias</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="t_opt">0</td>
+                            <td id="t_ob">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input id="slider" type="range" min="0" max="0">
             </div>
             <div id="IRA">CALCULE</div>
         </div>
