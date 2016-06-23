@@ -38,7 +38,7 @@ td {
     background-color: #c17164;
     float: left;
     margin-top: 25px;
-    margin: 35px 10px 5px 10px;
+    margin: 5px 10px;
     font-size: 80px;
     text-align: center;
     border-radius: 50px;
@@ -112,14 +112,12 @@ table input {
     width: 19%;
     float: right;
     height: 100%;
-    background-color: #555;
+    background-color: #b38d97;
     border-left: 1px solid black;
     position: relative;
 }
 .del_s{
-    background-color: #c17164;
-    line-height: 25px;
-    display: inline-block;
+    background-color: #4c293c;
     vertical-align: middle;
     text-align: center;
     width: 25px;
@@ -127,11 +125,13 @@ table input {
     font-weight: bolder;
     color:white;
     cursor:default;
-    float: right;
-    clear: both;
+    -webkit-box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.44);
+    -moz-box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.44);
+    box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.44);
 }
 .del_s:hover{
     color: #4c293c;
+    background-color: #c17164;
 }
 .del_p {
     line-height: 25px;
@@ -158,6 +158,9 @@ a:hover {
 }
 #info{
     color: white;
+    text-align: center;
+    font-weight: bold;
+
 }
 #bottom_cont{
     position: fixed;
@@ -172,12 +175,15 @@ a:hover {
 #trancamentos{
     width: 250px;
     font-size: 12px;
+    color: white;
     text-decoration: none;
-    border-collapse:collapse
+    border-collapse:collapse;
+    background-color: #4c293c;
+    border-color: white;
 }
 #trancamentos td{
     padding: 2px;
-    border: 1px solid black;
+    border: 1px solid white;
 }
 #slider_cont{
     float: left;

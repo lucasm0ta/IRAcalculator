@@ -26,7 +26,7 @@ function start() {
         $(this).before(row);
     });
     $('#add_semester').click( function () {
-        $(this).before('<div class="sem_wrap"><div class="del_s">X</div><table class="semester"><thead><tr><td class="nth_sem" colspan="3">' + ($('.semester').length+1) + 'º Semestre</td></tr><tr class="sem_data"><td>Creditos</td><td>Menção</td></tr><tbody>' + row + '<tr class="add_row"><td colspan="3"><div>+</div></td></tr></tbody></table></div>');
+        $(this).before('<div class="sem_wrap"><table class="semester"><thead><tr><td class="nth_sem" colspan="2">' + ($('.semester').length+1) + 'º Semestre</td><td class="del_s">X</td></tr><tr class="sem_data"><td>Creditos</td><td>Menção</td></tr><tbody>' + row + '<tr class="add_row"><td colspan="3"><div>+</div></td></tr></tbody></table></div>');
     });
     //delete paper
     $(document).on('click', '.del_p', function () {
@@ -34,7 +34,7 @@ function start() {
     });
     //delete semester
     $(document).on('click', '.del_s', function () {
-        $(this).parent().remove();
+        $(this).parent().parent().parent().remove();
     });
 
 
@@ -113,9 +113,9 @@ function calculate() {
     document.getElementById("slider").max = tran;
     $('#t_tr').html(tran);
     DTb = $('#slider').val();
-    $('#t_opt').html(DTb);
+    $('#t_ob').html(DTb);
     DTp = tran - DTb;
-    $('#t_ob').html(DTp);
+    $('#t_opt').html(DTp);
 
     console.log(DTb + " " + DC + " " + sumUp + " " + sumDown);
     if (sumDown > 0) {
