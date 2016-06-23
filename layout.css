@@ -100,7 +100,7 @@ table input {
     text-align: center;
     width: 100%;
     float: left;
-    height: 20%;
+    height: auto;
     color: #fc9f8d;
 }
 #sem_cont{
@@ -150,8 +150,11 @@ table input {
     background-color: #4c293c;
 }
 a {
-    color: blue;
+    color: #dd4f59;
     text-decoration: none;
+}
+a:hover {
+    color:#a5e8ff;
 }
 #info{
     color: white;
@@ -163,6 +166,7 @@ a {
 }
 #love{
     position: fixed;
+    color: #fc9f8d;
     bottom: 0;
 }
 #trancamentos{

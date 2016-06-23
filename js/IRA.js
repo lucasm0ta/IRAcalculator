@@ -15,6 +15,9 @@ var row = '<tr class="paper"><td><input class="credits" type="number" maxlength=
 $(document).ready( function () {
     start();
 });
+$(document).on('click', '#IRA', function () {
+    calculate();
+});
 var x = setInterval(calculate, 100);
 
 function start() {
@@ -60,7 +63,6 @@ function calculate() {
     aux.each( function (index, value){
         var aux = "";
         aux = $(value).val();
-        console.log(aux + "^");
         if ((getKey ($(value).val()) === false) && aux) {
             console.log(aux +"|");
             $(value).css("background-color","#dd4f59");
@@ -69,32 +71,43 @@ function calculate() {
         }
     });
 
-
+    var reductor = 0; //reduz indice se semestre tem valor 0
     $( ".semester" ).each( function( index, value ) {
         var Pi; //Peso da menção
-        var Pei = index+1 <= 6 ? index+1 : 6; //Peso da disciplina
+        var Pei = index+1 <= 6 ? index+1-reductor : 6-reductor; //Peso da disciplina
         var CRi; //Credito de uma determinada disciplina
         var credits = $(value).find('.credits');
         var grades = $(value).find('.grade');
+        var valid = 0;
         $(credits).each( function(index) {
-            Pi = getKey($(grades[index]).val());
-            CRi = parseInt($(credits[index]).val());
-            if ( CRi > 0 && Pi >=-3){
-                DC++;
-                if (Pi >= 0) {
-                    console.log(CRi + " " + Pi + " " + Pei);
-                    sumUp += Pi * CRi * Pei;
-                    sumDown += CRi * Pei;
-                } else if (Pi == -2){
-                    tran++;
-                    //TODO Fazer um slider entre obrigatorias trancadas e optativas
-                } else if(Pi === -3) {
-                    DC--;
+            var auxPi = getKey($(grades[index]).val());
+            var auxCRi = parseInt($(credits[index]).val());
+            console.log(typeof(auxPi)+"~"+auxCRi);
+
+            if (auxPi !== false) {
+                Pi = auxPi;
+                CRi = auxCRi;
+                console.log("MUAHAHA");
+                if ( CRi > 0 && Pi >=-3){
+                    DC++;
+                    if (Pi >= 0) {
+                        console.log(CRi + " " + Pi + " " + Pei);
+                        sumUp += Pi * CRi * Pei;
+                        sumDown += CRi * Pei;
+                    } else if (Pi == -2){
+                        tran++;
+                    } else if(Pi === -3) {
+                        DC--;
+                    }
+                    valid++;
+                } else {
+                    console.log("Deu Ruim "+ CRi +" "+ Pi );
                 }
-            } else {
-                console.log("Deu Ruim "+ CRi +" "+ Pi );
             }
         });
+        if (valid === 0) {
+            reductor++;
+        }
     });
     //change slider values
     document.getElementById("slider").max = tran;
@@ -107,8 +120,6 @@ function calculate() {
     console.log(DTb + " " + DC + " " + sumUp + " " + sumDown);
     if (sumDown > 0) {
         IRA = (1 - (0.6 * DTb + 0.4 * DTp)/DC) * (sumUp / sumDown);
-    } else {
-        IRA = 0;
     }
     if(!isNaN(IRA)) {
         $('#IRA').text(IRA.toFixed(4));
