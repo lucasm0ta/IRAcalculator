@@ -3,6 +3,8 @@ html, body{
     margin: 0;
     padding: 0;
     border: 0;
+    color: #black;
+    background-color: #4c293c;
 }
 .sem_wrap{
     float: left;
@@ -10,10 +12,13 @@ html, body{
     margin: 10px 5px;
 }
 .semester{
-    padding: 10px 5px;
-    background-color: #ccc;
+    background-color: #c17164;
     max-width: 500px;
     min-width: 200px;
+    border-collapse:collapse
+}
+.sem_data{
+    font-size: 13px;
 }
 thead {
     text-align: center;
@@ -30,21 +35,22 @@ td {
 #add_semester{
     width: 100px;
     height: 100px;
-    background-color: #ddd;
+    background-color: #c17164;
     float: left;
     margin-top: 25px;
     margin: 35px 10px 5px 10px;
     font-size: 80px;
     text-align: center;
     border-radius: 50px;
+    color: #4c293c;
     display: table-cell;
 }
 .add_row:hover{
-    background-color: #fdd;
+    background-color: #fc9f8d;
 }
 #add_semester:hover{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: #fc9f8d;
     -webkit-animation:spin 0.1s linear;
     animation:spin 0.1s linear  ;
 }
@@ -60,9 +66,10 @@ td {
 table input {
     width: 60px;
     margin: 0 auto;
-    border: solid 1px black;
+    border: solid 1px white;
     padding: 5px;
     text-align: center;
+    color: white;
 }
 #tranc{
     float: left;
@@ -94,6 +101,7 @@ table input {
     width: 100%;
     float: left;
     height: 20%;
+    color: #fc9f8d;
 }
 #sem_cont{
     width: 100%;
@@ -109,7 +117,7 @@ table input {
     position: relative;
 }
 .del_s{
-    background-color: #555;
+    background-color: #c17164;
     line-height: 25px;
     display: inline-block;
     vertical-align: middle;
@@ -123,23 +131,23 @@ table input {
     clear: both;
 }
 .del_s:hover{
-    color: red;
+    color: #4c293c;
 }
 .del_p {
-    background-color: black;
     line-height: 25px;
     display: inline-block;
     vertical-align: middle;
     width: 25px;
     height: 25px;
     font-weight: bolder;
-    color:white;
     border-radius: 100px;
     cursor:default;
+    background-color: white;
+    color: #c17164;
 }
 .del_p:hover{
-    background-color: white;
-    color:black;
+    color: #fc9f8d;
+    background-color: #4c293c;
 }
 a {
     color: blue;
@@ -174,12 +182,22 @@ a {
     width: 100%;
     margin: 0;
 }
-@media (max-width: 1315px) {
+@media (min-width: 860px) and (max-width: 1315px) {
     #res {
         width: 250px;
     }
     #main {
+        max-width: 70%;
+    }
+    #top {
         width: auto;
+    }
+}
+@media (max-width: 860px) {
+    #res {
+        width: 250px;
+    }
+    #main {
         max-width: 50%;
     }
     #top {

@@ -23,7 +23,7 @@ function start() {
         $(this).before(row);
     });
     $('#add_semester').click( function () {
-        $(this).before('<div class="sem_wrap"><div class="del_s">X</div><table class="semester"><thead><tr><td class="nth_sem" colspan="3">' + ($('.semester').length+1) + 'º Semestre</td></tr><tr><td>Creditos</td><td>Menção</td></tr><tbody>' + row + '<tr class="add_row"><td colspan="3"><div>+</div></td></tr></tbody></table></div>');
+        $(this).before('<div class="sem_wrap"><div class="del_s">X</div><table class="semester"><thead><tr><td class="nth_sem" colspan="3">' + ($('.semester').length+1) + 'º Semestre</td></tr><tr class="sem_data"><td>Creditos</td><td>Menção</td></tr><tbody>' + row + '<tr class="add_row"><td colspan="3"><div>+</div></td></tr></tbody></table></div>');
     });
     //delete paper
     $(document).on('click', '.del_p', function () {
@@ -51,9 +51,9 @@ function calculate() {
         var aux = "";
         aux = $(value).val();
         if (isNaN(aux) && aux) {
-            $(value).css("background-color","red");
+            $(value).css("background-color","#dd4f59");
         } else {
-            $(value).css("background-color","#ccc");
+            $(value).css("background-color","#4c293c");
         }
     });
     aux = $(".grade");
@@ -63,9 +63,9 @@ function calculate() {
         console.log(aux + "^");
         if ((getKey ($(value).val()) === false) && aux) {
             console.log(aux +"|");
-            $(value).css("background-color","red");
+            $(value).css("background-color","#dd4f59");
         } else {
-            $(value).css("background-color","#ccc");
+            $(value).css("background-color","#4c293c");
         }
     });
 
