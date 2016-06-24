@@ -15,7 +15,7 @@ html, body{
     background-color: #c17164;
     max-width: 500px;
     min-width: 200px;
-    border-collapse:collapse
+    border-collapse:collapse;
 }
 .sem_data{
     font-size: 13px;
@@ -67,6 +67,7 @@ table input {
     width: 60px;
     margin: 0 auto;
     border: solid 1px white;
+    background-color: #4c293c;
     padding: 5px;
     text-align: center;
     color: white;
@@ -144,6 +145,7 @@ table input {
     cursor:default;
     background-color: white;
     color: #c17164;
+    margin-right: 4px;
 }
 .del_p:hover{
     color: #fc9f8d;
