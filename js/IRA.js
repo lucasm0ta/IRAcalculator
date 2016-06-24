@@ -34,7 +34,7 @@ function start() {
     });
     //delete semester
     $(document).on('click', '.del_s', function () {
-        $(this).parent().parent().parent().remove();
+        $(this).parent().parent().parent().parent().remove();
     });
 
 
@@ -74,24 +74,27 @@ function calculate() {
     var reductor = 0; //reduz indice se semestre tem valor 0
     $( ".semester" ).each( function( index, value ) {
         var Pi; //Peso da menção
-        var Pei = index+1 <= 6 ? index+1-reductor : 6-reductor; //Peso da disciplina
+        var Pei = index+1-reductor <= 6 ? index+1-reductor : 6; //Peso da disciplina
         var CRi; //Credito de uma determinada disciplina
         var credits = $(value).find('.credits');
         var grades = $(value).find('.grade');
         var valid = 0;
+        if(reductor == 1) {
+            // reductor++;
+        }
+        console.log("Reductor: " + reductor + " Idx: " + Pei);
         $(credits).each( function(index) {
             var auxPi = getKey($(grades[index]).val());
             var auxCRi = parseInt($(credits[index]).val());
-            console.log(typeof(auxPi)+"~"+auxCRi);
+            // console.log(auxPi+"~"+auxCRi);
 
             if (auxPi !== false) {
                 Pi = auxPi;
                 CRi = auxCRi;
-                console.log("MUAHAHA");
-                if ( CRi > 0 && Pi >=-3){
+                if ( CRi > 0 && Pi >-3){
                     DC++;
                     if (Pi >= 0) {
-                        console.log(CRi + " " + Pi + " " + Pei);
+                        // console.log(CRi + " " + Pi + " " + Pei);
                         sumUp += Pi * CRi * Pei;
                         sumDown += CRi * Pei;
                     } else if (Pi == -2){
@@ -100,14 +103,12 @@ function calculate() {
                         DC--;
                     }
                     valid++;
-                } else {
-                    console.log("Deu Ruim "+ CRi +" "+ Pi );
+                } else if (Pi === -3){
+                    valid = 0;
+                    // console.log("Deu Ruim "+ CRi +" "+ Pi );
                 }
             }
         });
-        if (valid === 0) {
-            reductor++;
-        }
     });
     //change slider values
     document.getElementById("slider").max = tran;
