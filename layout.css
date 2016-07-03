@@ -1,4 +1,12 @@
 html, body{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+    cursor: default;                         
     font-family: sans-serif;
     margin: 0;
     padding: 0;
@@ -25,9 +33,13 @@ thead {
     text-transform: uppercase;
     font-size: 15px;
 }
+#semester{
+    cursor: default;
+}
 #semester td {
     padding: 2px;
     text-decoration: underline;
+    cursor: default;
 }
 td {
     text-align: center;
@@ -87,10 +99,7 @@ table input {
     color: white;
 }
 #IRA:hover{
-    background-color: #666;
-}
-#IRA:active{
-    background-color: #777;
+    background-color: #4c293c;
 }
 #main{
     width: 80%;
@@ -126,13 +135,16 @@ table input {
     font-weight: bolder;
     color:white;
     cursor:default;
-    -webkit-box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.44);
-    -moz-box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.44);
-    box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.44);
+    -webkit-box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.15);
+    box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.15);
 }
 .del_s:hover{
     color: #4c293c;
     background-color: #c17164;
+    -webkit-box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.44);
+    -moz-box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.44);
+    box-shadow: inset 3px -3px 3px 0px rgba(0,0,0,0.44);
 }
 .del_p {
     line-height: 25px;
