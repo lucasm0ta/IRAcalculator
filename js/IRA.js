@@ -9,8 +9,18 @@ var mencao = {
     "MS" : 4,
     "SS" : 5
 }
-var tran = 0;
-var row = '<tr class="paper"><td><input class="credits" type="number" maxlength="2" min="1" value="2"></td><td><input class="grade" type="text" maxlength="2" value="MM"></td><td><div class="del_p">X</div></td></tr>';
+/*var paper = {
+    cr: 0,
+    m: 3
+}
+var semester = {
+    w: 0,
+    p: paper[],
+    val: 0
+}*/
+
+var tran = 0; //numero de materias trancadas
+var NEW_PAPER = '<tr class="paper"><td><input class="credits" type="number" maxlength="2" min="1" value="2"></td><td><input class="grade" type="text" maxlength="2" value="MM"></td><td><div class="del_p">X</div></td></tr>';
 
 $(document).ready( function () {
     start();
@@ -18,27 +28,37 @@ $(document).ready( function () {
 $(document).on('click', '#IRA', function () {
     calculate();
 });
-var x = setInterval(calculate, 100);
+var loop = setInterval(calculate, 100);
+
+$(".credits").on('change', 'input, select, textarea', function(){
+    console.log($(this).val() + "-");
+    // $(this).closest('tr').find('input[name="dbFlag"]').val('U');
+});
 
 function start() {
-    //div contenteditable
+    //add paper
     $(document).on('click', '.add_row', function () {
-        $(this).before(row);
+        $(this).before(NEW_PAPER);
     });
+    
+    //add semester
     $('#add_semester').click( function () {
-        $(this).before('<div class="sem_wrap"><table class="semester"><thead><tr><td class="nth_sem" colspan="2">' + ($('.semester').length+1) + 'º Semestre</td><td class="del_s">X</td></tr><tr class="sem_data"><td>Creditos</td><td>Menção</td></tr><tbody>' + row + '<tr class="add_row"><td colspan="3"><div>+</div></td></tr></tbody></table></div>');
+        $(this).parent().before('<div class="sem_wrap"><table class="semester"><thead><tr><td class="nth_sem" colspan="2">' + ($('.semester').length+1) + 'º Semestre</td><td class="del_s">X</td></tr><tr class="sem_data"><td>Creditos</td><td>Menção</td></tr><tbody>' + NEW_PAPER + '<tr class="add_row"><td colspan="3"><div>+</div></td></tr></tbody></table></div>');
     });
+    
     //delete paper
     $(document).on('click', '.del_p', function () {
+        //pegar qua elemento é esse e recalcular
         $(this).parent().parent().remove();
     });
+    
     //delete semester
     $(document).on('click', '.del_s', function () {
+        //pegar qua elemento é esse e recalcular
         $(this).parent().parent().parent().parent().remove();
     });
-
-
 }
+
 function calculate() {
     var DC = 0; //Numero de disciplinas matriculado(inclundo trancadas)
     var DTb = 0; //Obrigatorias Trancadas
@@ -50,6 +70,7 @@ function calculate() {
     // IRA = (1-(0.6*DTb + 0.4*DTp)/DC) * SUM(Pi*CRi*Pei)/SUM(CRi*Pei)
 
     var aux = $(".credits");
+    //caso de numero de creditos inválidos
     aux.each( function (index, value){
         var aux = "";
         aux = $(value).val();
@@ -59,12 +80,14 @@ function calculate() {
             $(value).css("background-color","#4c293c");
         }
     });
+    
     aux = $(".grade");
+    //caso de numero de creditos inválidos.
     aux.each( function (index, value){
         var aux = "";
         aux = $(value).val();
         if ((getKey ($(value).val()) === false) && aux) {
-            console.log(aux +"|");
+            // console.log(aux +"|");
             $(value).css("background-color","#dd4f59");
         } else {
             $(value).css("background-color","#4c293c");
@@ -72,6 +95,7 @@ function calculate() {
     });
 
     var reductor = 0; //reduz indice se semestre tem valor 0
+    //Itera cada semetre e recalcula tudo.
     $( ".semester" ).each( function( index, value ) {
         var Pi; //Peso da menção
         var Pei = index+1-reductor <= 6 ? index+1-reductor : 6; //Peso da disciplina
@@ -82,7 +106,7 @@ function calculate() {
         if(reductor == 1) {
             // reductor++;
         }
-        console.log("Reductor: " + reductor + " Idx: " + Pei);
+        // console.log("Reductor: " + reductor + " Idx: " + Pei);
         $(credits).each( function(index) {
             var auxPi = getKey($(grades[index]).val());
             var auxCRi = parseInt($(credits[index]).val());
@@ -110,6 +134,7 @@ function calculate() {
             }
         });
     });
+    
     //change slider values
     document.getElementById("slider").max = tran;
     $('#t_tr').html(tran);
@@ -118,18 +143,19 @@ function calculate() {
     DTp = tran - DTb;
     $('#t_opt').html(DTp);
 
-    console.log(DTb + " " + DC + " " + sumUp + " " + sumDown);
+    
+    // console.log(DTb + " " + DC + " " + sumUp + " " + sumDown);
     if (sumDown > 0) {
         IRA = (1 - (0.6 * DTb + 0.4 * DTp)/DC) * (sumUp / sumDown);
     }
     if(!isNaN(IRA)) {
         $('#IRA').text(IRA.toFixed(4));
     }
-    console.log(IRA);
+    // console.log(IRA);
     $('.nth_sem').each( function( index, value ) {
         $(value).html((index+1) +"º Semestre");
     });
-    console.log("Trancamentos: " + tran);
+    // console.log("Trancamentos: " + tran);
 
 }
 function getKey(value){

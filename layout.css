@@ -6,7 +6,7 @@ html, body{
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Non-prefixed version, currently
                                   not supported by any browser */
-    cursor: default;                         
+    cursor: default;
     font-family: sans-serif;
     margin: 0;
     padding: 0;
@@ -14,10 +14,24 @@ html, body{
     color: #black;
     background-color: #4c293c;
 }
-.sem_wrap{
+#sem_cont{
+    width: 100%;
     float: left;
+    height: 80%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+}
+.sem_wrap{
+    /*float: left;*/
     max-width: 200px;
     margin: 10px 5px;
+    flex-grow: 1;
 }
 .semester{
     background-color: #c17164;
@@ -44,18 +58,21 @@ thead {
 td {
     text-align: center;
 }
+#add_sem_cont{
+    width: 100%;
+    flex-grow: 1;
+}
 #add_semester{
     width: 100px;
     height: 100px;
     background-color: #c17164;
-    float: left;
     margin-top: 25px;
-    margin: 5px 10px;
+    margin: 5px auto;
     font-size: 80px;
     text-align: center;
     border-radius: 50px;
     color: #4c293c;
-    display: table-cell;
+    line-height: 100px;
 }
 .add_row:hover{
     background-color: #fc9f8d;
@@ -112,11 +129,6 @@ table input {
     float: left;
     height: auto;
     color: #fc9f8d;
-}
-#sem_cont{
-    width: 100%;
-    float: left;
-    height: 80%;
 }
 #res{
     width: 19%;
