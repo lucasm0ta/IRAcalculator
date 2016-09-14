@@ -175,6 +175,16 @@ table input {
     color: #fc9f8d;
     background-color: #4c293c;
 }
+#del_all{
+    background-color: white;
+    color: #c17164;
+    display: inline;
+    text-align: right;
+}
+#del_all:hover{
+    color: #fc9f8d;
+    background-color: #4c293c;
+}
 a {
     color: #dd4f59;
     text-decoration: none;

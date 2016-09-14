@@ -4,42 +4,18 @@
         <link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon'/ >
         <meta charset="UTF-8">
         <link rel="stylesheet" href="layout.css">
-        <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/IRA.js"></script>
     </head>
     <body>
         <div id="main">
             <div id="top"><h1> IRA calculator</h1></div>
             <div id="sem_cont">
-                <div class="sem_wrap">
-                    <table class="semester">
-                        <thead>
-                            <tr>
-                                <td class="nth_sem" colspan="2">1º Semestre</td>
-                                <td class="del_s">X</td>
-                            </tr>
-                            <tr class="sem_data">
-                                <td>Creditos</td>
-                                <td>Menção</td>
-                            </tr>
-                        <tbody>
-                            <tr class="paper">
-                                <td><input class="credits" type="number" maxlength="2" min="1" value="2"></td>
-                                <td><input class="grade" type="text" maxlength="2" value="MM"></td>
-                                <td><div class="del_p">X</div></td>
-                            </tr>
-                            <tr class="add_row">
-                                <td colspan="3">
-                                    <div>+</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
                 <div id="add_sem_cont">
                     <div id="add_semester"><strong>+</strong></div>
                 </div>
             </div>
+            <div id="del_all">REMOVE ALL</div>
         </div>
         <div id="res">
             <div id="info">
