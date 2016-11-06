@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="layout.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript" src="js/data.js"></script>
         <script type="text/javascript" src="js/IRA.js"></script>
     </head>
     <body>
@@ -39,7 +40,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <input id="slider" type="range" min="0" max="0">
+                <input value="0" oniput="changeSliderVal(this.value)" onchange="changeSliderVal(this.value)" id="slider" type="range" min="0" max="0">
             </div>
             <div id="IRA">CALCULE</div>
         </div>
